@@ -8,10 +8,13 @@ namespace HobbitKeyVisualizer.WinApi
         private const string user32 = "user32.dll";
 
         [DllImport(user32)]
-        public static extern int SetWindowsHookEx(
+        public static extern IntPtr SetWindowsHookEx(
             [In] int idHook,
             [In] Delegate lpfn,
             [In] IntPtr hMod,
             [In] uint dwThreaedId = 0);
+
+        [DllImport(user32)]
+        private static extern IntPtr GetModuleHandle(string lpModuleName);
     }
 }
