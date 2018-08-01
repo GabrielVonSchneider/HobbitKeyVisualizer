@@ -20,7 +20,6 @@ namespace HobbitKeyVisualizer
                 lowLevelKeyboardHook,
                 new LowLevelKeyboardProc(this.Listener),
                 Kernel32.GetModuleHandle(null));
-
         }
 
         private long Listener(
@@ -28,11 +27,12 @@ namespace HobbitKeyVisualizer
             UIntPtr wParam,
             long lParam)
         {
-            return 0;
+            throw new NotImplementedException();
         }
 
         public void ReleaseHook()
         {
+            User32.UnhookWindowsHookEx(this.hook);
         }
     }
 }
