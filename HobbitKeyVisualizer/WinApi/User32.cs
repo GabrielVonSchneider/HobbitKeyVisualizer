@@ -13,8 +13,5 @@ namespace HobbitKeyVisualizer.WinApi
             [In] Delegate lpfn,
             [In] IntPtr hMod,
             [In] uint dwThreaedId = 0);
-
-        [DllImport(user32)]
-        private static extern IntPtr GetModuleHandle(string lpModuleName);
     }
 }
