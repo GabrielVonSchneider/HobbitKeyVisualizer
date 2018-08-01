@@ -7,7 +7,7 @@ namespace HobbitKeyVisualizer
     internal class KeyboardHook
     {
         private const int lowLevelKeyboardHook = 13;
-        private IntPtr hook;
+        private IntPtr? hook;
 
         private delegate long LowLevelKeyboardProc(
             [In] int nCode,
@@ -16,10 +16,23 @@ namespace HobbitKeyVisualizer
 
         public void InstallHook()
         {
-            this.hook = User32.SetWindowsHookEx(
+            if(this.IsInstalled)
+            {
+                throw new InvalidOperationException(
+                    "Tried to set another hook when one was set already.");
+            }
+
+            var hook = User32.SetWindowsHookEx(
                 lowLevelKeyboardHook,
                 new LowLevelKeyboardProc(this.Listener),
                 Kernel32.GetModuleHandle(null));
+
+            if(hook == IntPtr.Zero)
+            {
+                Marshal.ThrowExceptionForHR(Marshal.GetLastWin32Error());
+            }
+
+            this.hook = hook;
         }
 
         private long Listener(
@@ -32,7 +45,17 @@ namespace HobbitKeyVisualizer
 
         public void ReleaseHook()
         {
-            User32.UnhookWindowsHookEx(this.hook);
+            if(!(this.hook is IntPtr hook))
+            {
+                throw new InvalidOperationException(
+                    "Tried to release hook when none was set.");
+            }
+            if (!User32.UnhookWindowsHookEx(hook))
+            {
+                Marshal.ThrowExceptionForHR(Marshal.GetLastWin32Error());
+            }
         }
+
+        public bool IsInstalled => this.hook is IntPtr;
     }
 }
