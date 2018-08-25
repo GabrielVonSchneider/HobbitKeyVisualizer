@@ -5,8 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HobbitKeyVisualizer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow"
+        Width="1920" 
+        Height="1080"
+        Background="Black">
+    <Canvas>
+        <Rectangle
+            x:Name="Placeholder"
+            Fill="#FF0000AE" 
+            HorizontalAlignment="Left" 
+            Width="1252"
+            Height="864" 
+            Margin="0,0,0,0" 
+            Stroke="Black" 
+            VerticalAlignment="Top"
+        />
+
+        <ToggleButton
+            Height="78" 
+            Canvas.Left="56"
+            Canvas.Top="916"
+            Width="1143" 
+            Style="{DynamicResource SpaceBar}"
+        >
+            Space
+        </ToggleButton>
+
+        <ToggleButton 
+            FontSize="60"
+            Height="90"
+            Canvas.Left="1519.333" 
+            Canvas.Top="98.5" 
+            Width="92.834" 
+            Style="{DynamicResource SpaceBar}" 
+        >
+            W
+        </ToggleButton>
+
+        <ToggleButton 
+            FontSize="60"
+            Height="90"
+            Canvas.Left="1426.5" 
+            Canvas.Top="188.5" 
+            Width="92.833" 
+            Style="{DynamicResource SpaceBar}" 
+        >
+            A
+        </ToggleButton>
+
+        <ToggleButton 
+            FontSize="60"
+            Height="90"
+            Canvas.Left="1519.333" 
+            Canvas.Top="188.5" 
+            Width="92.834" 
+            Style="{DynamicResource SpaceBar}" 
+        >
+            S
+        </ToggleButton>
+
+        <ToggleButton 
+            FontSize="60"
+            Height="90"
+            Canvas.Left="1612.167" 
+            Canvas.Top="188.5" 
+            Width="92.833" 
+            Style="{DynamicResource SpaceBar}" 
+        >
+            D
+        </ToggleButton>
+
+    </Canvas>
 </Window>
