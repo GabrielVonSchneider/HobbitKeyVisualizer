@@ -54,11 +54,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="KeyboardHook.cs" />
+    <Compile Include="WinApi\KbDllHookStruct.cs" />
+    <Compile Include="WinApi\KbDllHookStructFlags.cs" />
+    <Compile Include="WinApi\Kernel32.cs" />
     <Compile Include="WinApi\User32.cs" />
     <Page Include="Buttons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="WinApi\VirtualKeyCode.cs" />
+    <Compile Include="WinApi\WindowsMessage.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
