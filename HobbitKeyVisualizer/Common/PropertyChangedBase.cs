@@ -8,10 +8,19 @@ namespace HobbitKeyVisualizer.Common
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void SendNotification(string propertyName)
+        protected void SendNotification(string propertyName)
         {
             var args = new PropertyChangedEventArgs(propertyName);
             this.PropertyChanged?.Invoke(this, args);
+        }
+
+        protected void Change<T>(
+            out T field,
+            T value,
+            [CallerMemberName] string propertyName = null)
+        {
+            field = value;
+            this.SendNotification(propertyName);
         }
 
         protected void Set<T>(
@@ -23,15 +32,6 @@ namespace HobbitKeyVisualizer.Common
             {
                 this.Change(out field, value, propertyName);
             }
-        }
-
-        protected void Change<T>(
-            out T field,
-            T value,
-            [CallerMemberName] string propertyName = null)
-        {
-            field = value;
-            this.SendNotification(propertyName);
         }
 
         /// <summary>
@@ -49,15 +49,6 @@ namespace HobbitKeyVisualizer.Common
             }
         }
 
-        protected void Change<T>(
-            Action<T> setter,
-            T value,
-            [CallerMemberName] string propertyName = null)
-        {
-            setter(value);
-            this.SendNotification(propertyName);
-        }
-
         /// <summary>
         /// Sets and notifies if changed. Returns the old value.
         /// </summary>
@@ -73,6 +64,15 @@ namespace HobbitKeyVisualizer.Common
                 this.Change(setter, value, propertyName);
             }
             return existing;
+        }
+
+        protected void Change<T>(
+            Action<T> setter,
+            T value,
+            [CallerMemberName] string propertyName = null)
+        {
+            setter(value);
+            this.SendNotification(propertyName);
         }
     }
 }

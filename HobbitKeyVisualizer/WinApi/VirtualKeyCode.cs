@@ -1,6 +1,6 @@
 ﻿namespace HobbitKeyVisualizer.WinApi
 {
-    internal enum VirtualKeyCode : ulong
+    internal enum VirtualKeyCode : uint
     {
         /// <summary>
         /// Left Mouse Button

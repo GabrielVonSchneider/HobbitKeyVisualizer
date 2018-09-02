@@ -3,7 +3,7 @@
 namespace HobbitKeyVisualizer.WinApi
 {
     [Flags]
-    internal enum KbDllHookStructFlags : ulong
+    internal enum KbDllHookStructFlags : uint
     {
         Extended = 0x01,
         Injected = 0x10,

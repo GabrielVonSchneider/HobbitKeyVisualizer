@@ -18,7 +18,7 @@ namespace HobbitKeyVisualizer.WinApi
 
         public override bool Equals(object obj)
         {
-            return this.message.Equals(obj);
+            return obj is WindowsMessage msg && this.message == msg.message;
         }
 
         public static readonly WindowsMessage KeyDown =

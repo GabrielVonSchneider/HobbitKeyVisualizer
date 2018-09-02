@@ -23,6 +23,12 @@ namespace HobbitKeyVisualizer
 
         private readonly SynchronizationContext sync;
 
+        /// <summary>
+        /// The delegate needs to be stored to avoid it being
+        /// garbage collected.
+        /// </summary>
+        private LowLevelKeyboardProc lowLevelKeyboardProc;
+
         public event Action<VirtualKeyCode> KeyDown;
         public event Action<VirtualKeyCode> KeyUp;
 
@@ -33,10 +39,10 @@ namespace HobbitKeyVisualizer
                 WindowsMessage,
                 Action<VirtualKeyCode>>
             {
-                {WindowsMessage.KeyDown, this.KeyDown},
-                {WindowsMessage.KeyUp, this.KeyUp},
-                {WindowsMessage.SysKeyDown, this.KeyDown},
-                {WindowsMessage.SysKeyUp, this.KeyUp}
+                {WindowsMessage.KeyDown, vkc => this.KeyDown?.Invoke(vkc)},
+                {WindowsMessage.KeyUp, vkc => this.KeyUp?.Invoke(vkc)},
+                {WindowsMessage.SysKeyDown, vkc => this.KeyUp?.Invoke(vkc)},
+                {WindowsMessage.SysKeyUp, vkc => this.KeyUp?.Invoke(vkc)}
             };
         }
 
@@ -48,9 +54,10 @@ namespace HobbitKeyVisualizer
                     "Tried to set another hook when one was set already.");
             }
 
+            this.lowLevelKeyboardProc = this.Listener;
             var hook = User32.SetWindowsHookEx(
-                LowLevelKeyboardHook,
-                new LowLevelKeyboardProc(this.Listener),
+                LowLevelKeyboardHook, 
+                this.lowLevelKeyboardProc,
                 Kernel32.GetModuleHandle(null));
 
             if (hook == IntPtr.Zero)
@@ -68,7 +75,7 @@ namespace HobbitKeyVisualizer
         {
             if (this.actions.TryGetValue(wParam, out var action))
             {
-                this.sync.Post(state => action?.Invoke(lParam.vkCode), null);
+                this.sync.Post(state => action(lParam.vkCode), null);
             }
 
             return User32.CallNextHookEx(
@@ -89,6 +96,8 @@ namespace HobbitKeyVisualizer
             {
                 Marshal.ThrowExceptionForHR(Marshal.GetLastWin32Error());
             }
+
+            this.hook = null;
         }
 
         public bool IsInstalled => this.hook != null;

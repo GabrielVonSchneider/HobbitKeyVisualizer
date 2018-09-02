@@ -6,9 +6,9 @@ namespace HobbitKeyVisualizer.WinApi
     internal class KbDllHookStruct
     {
         public VirtualKeyCode vkCode;
-        public ulong scanCode;
+        public uint scanCode;
         public KbDllHookStructFlags flags;
-        public ulong time;
+        public uint time;
         public ulong dwExtraInfo;
     }
 }
