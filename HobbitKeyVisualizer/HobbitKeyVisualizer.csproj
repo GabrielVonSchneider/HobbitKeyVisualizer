@@ -74,18 +74,26 @@
     <Compile Include="Common\Equality.cs" />
     <Compile Include="Common\PropertyChangedBase.cs" />
     <Compile Include="Common\TokenBasedDelegateCommand.cs" />
+    <Compile Include="Hook.cs" />
     <Compile Include="KeyboardHook.cs" />
     <Compile Include="KeyboardViewModel.cs" />
     <Compile Include="KeyViewModel.cs" />
-    <Compile Include="WinApi\KbDllHookStruct.cs" />
-    <Compile Include="WinApi\KbDllHookStructFlags.cs" />
+    <Compile Include="MouseHook.cs" />
+    <Compile Include="WinApi\HookCode.cs" />
+    <Compile Include="WinApi\KbdLlHookStruct.cs" />
+    <Compile Include="WinApi\KbdLlHookStructFlags.cs" />
     <Compile Include="WinApi\Kernel32.cs" />
+    <Compile Include="WinApi\MouseData.cs" />
+    <Compile Include="WinApi\MsLlHookStruct.cs" />
+    <Compile Include="WinApi\MsLlHookStructFlags.cs" />
+    <Compile Include="WinApi\Point.cs" />
     <Compile Include="WinApi\User32.cs" />
     <Page Include="Buttons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="WinApi\VirtualKeyCode.cs" />
+    <Compile Include="WinApi\WindowsHook.cs" />
     <Compile Include="WinApi\WindowsMessage.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -33,7 +33,7 @@
             Canvas.Top="38"
             Width="1032"
             FontSize="50"
-            IsChecked="{Binding HookIsInstalled}"
+            IsChecked="{Binding KeyboardHookIsInstalled}"
             Focusable="False"
         >
             Keyboard Hook Installed

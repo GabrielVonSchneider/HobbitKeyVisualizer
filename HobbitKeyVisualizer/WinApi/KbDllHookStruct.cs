@@ -3,11 +3,11 @@
 namespace HobbitKeyVisualizer.WinApi
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal class KbDllHookStruct
+    internal class KbdLlHookStruct
     {
         public VirtualKeyCode vkCode;
         public uint scanCode;
-        public KbDllHookStructFlags flags;
+        public KbdLlHookStructFlags flags;
         public uint time;
         public ulong dwExtraInfo;
     }

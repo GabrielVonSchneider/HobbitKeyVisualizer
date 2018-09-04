@@ -6,7 +6,7 @@ using HobbitKeyVisualizer.WinApi;
 
 namespace HobbitKeyVisualizer
 {
-    internal class KeyboardHook
+    internal class KeyboardHook : Hook
     {
         private IntPtr? hook;
         private readonly Dictionary<
@@ -14,27 +14,20 @@ namespace HobbitKeyVisualizer
             Action<VirtualKeyCode>
         > actions;
         
-        private const int LowLevelKeyboardHook = 13;
 
         private delegate long LowLevelKeyboardProc(
             [In] int nCode,
             [In] WindowsMessage wParam,
-            [In] KbDllHookStruct lParam);
+            [In] KbdLlHookStruct lParam);
 
-        private readonly SynchronizationContext sync;
-
-        /// <summary>
-        /// The delegate needs to be stored to avoid it being
-        /// garbage collected.
-        /// </summary>
-        private LowLevelKeyboardProc lowLevelKeyboardProc;
 
         public event Action<VirtualKeyCode> KeyDown;
         public event Action<VirtualKeyCode> KeyUp;
 
-        public KeyboardHook(SynchronizationContext sync)
+        public KeyboardHook(SynchronizationContext sync) : base(
+            WindowsHook.LowLevelKeyboardHook,
+            sync)
         {
-            this.sync = sync;
             this.actions = new Dictionary<
                 WindowsMessage,
                 Action<VirtualKeyCode>>
@@ -46,32 +39,10 @@ namespace HobbitKeyVisualizer
             };
         }
 
-        public void InstallHook()
-        {
-            if (this.IsInstalled)
-            {
-                throw new InvalidOperationException(
-                    "Tried to set another hook when one was set already.");
-            }
-
-            this.lowLevelKeyboardProc = this.Listener;
-            var hook = User32.SetWindowsHookEx(
-                LowLevelKeyboardHook, 
-                this.lowLevelKeyboardProc,
-                Kernel32.GetModuleHandle(null));
-
-            if (hook == IntPtr.Zero)
-            {
-                Marshal.ThrowExceptionForHR(Marshal.GetLastWin32Error());
-            }
-
-            this.hook = hook;
-        }
-
         private long Listener(
             int nCode,
             WindowsMessage wParam,
-            KbDllHookStruct lParam)
+            KbdLlHookStruct lParam)
         {
             if (this.actions.TryGetValue(wParam, out var action))
             {
@@ -84,22 +55,9 @@ namespace HobbitKeyVisualizer
                 lParam: lParam);
         }
 
-        public void ReleaseHook()
+        protected override Delegate GetHandler()
         {
-            if (!(this.hook is IntPtr hook))
-            {
-                throw new InvalidOperationException(
-                    "Tried to release hook when none was set.");
-            }
-
-            if (!User32.UnhookWindowsHookEx(hook))
-            {
-                Marshal.ThrowExceptionForHR(Marshal.GetLastWin32Error());
-            }
-
-            this.hook = null;
+            return new LowLevelKeyboardProc(this.Listener);
         }
-
-        public bool IsInstalled => this.hook != null;
     }
 }

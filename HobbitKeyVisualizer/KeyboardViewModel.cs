@@ -15,34 +15,58 @@ namespace HobbitKeyVisualizer
         public KeyViewModel SButton { get; }
         public KeyViewModel WButton { get; }
         public KeyViewModel SpaceBar { get; }
-        public KeyViewModel M1 { get; }
-        public KeyViewModel M2 { get; }
 
+        private readonly KeyViewModel.Token m1Token;
+        private readonly KeyViewModel.Token m2Token;
+        private readonly MouseHook mouseHook;
 
-        public bool HookIsInstalled
+        public bool KeyboardHookIsInstalled
         {
             get => this.keyboardHook.IsInstalled;
             set => this.Set(
-                this.SwitchHook,
+                this.SwitchKeyboardHook,
                 value,
                 this.keyboardHook.IsInstalled);
         }
 
-        private void SwitchHook(bool on)
+        public bool MouseHookIsInstalled
+        {
+            get => this.mouseHook.IsInstalled;
+            set => this.Set(
+                this.SwitchMouseHook,
+                value,
+                this.mouseHook.IsInstalled);
+        }
+
+        private void SwitchMouseHook(bool on)
         {
             if (on)
             {
-                this.keyboardHook.InstallHook();
+                this.mouseHook.Set();
             }
             else
             {
-                this.keyboardHook.ReleaseHook();
+                this.mouseHook.Unhook();
+            }
+        }
+
+        private void SwitchKeyboardHook(bool on)
+        {
+            if (on)
+            {
+                this.keyboardHook.Set();
+            }
+            else
+            {
+                this.keyboardHook.Unhook();
             }
         }
 
         public KeyboardViewModel()
         {
             this.keyboardHook = new KeyboardHook(
+                SynchronizationContext.Current);
+            this.mouseHook = new MouseHook(
                 SynchronizationContext.Current);
 
             this.keyboardHook.KeyDown += this.KeyDown;
@@ -55,8 +79,6 @@ namespace HobbitKeyVisualizer
                 {VirtualKeyCode.S, new KeyViewModel.Token("S")},
                 {VirtualKeyCode.D, new KeyViewModel.Token("D")},
                 {VirtualKeyCode.Space, new KeyViewModel.Token("Space")},
-                {VirtualKeyCode.LeftButton, new KeyViewModel.Token("M1")},
-                {VirtualKeyCode.RightButton, new KeyViewModel.Token("M2")}
             };
 
             this.WButton = this.keys[VirtualKeyCode.W].Vm;
@@ -64,8 +86,9 @@ namespace HobbitKeyVisualizer
             this.SButton = this.keys[VirtualKeyCode.S].Vm;
             this.DButton = this.keys[VirtualKeyCode.D].Vm;
             this.SpaceBar = this.keys[VirtualKeyCode.Space].Vm;
-            this.M1 = this.keys[VirtualKeyCode.LeftButton].Vm;
-            this.M2 = this.keys[VirtualKeyCode.RightButton].Vm;
+
+            this.m1Token = new KeyViewModel.Token("M1");
+            this.m2Token = new KeyViewModel.Token("M2");
         }
 
         private void KeyDown(VirtualKeyCode keyCode)
@@ -83,5 +106,8 @@ namespace HobbitKeyVisualizer
                 token.Release();
             }
         }
+
+        public KeyViewModel M1 => this.m1Token.Vm;
+        public KeyViewModel M2 => this.m2Token.Vm;
     }
 }

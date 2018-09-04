@@ -9,7 +9,7 @@ namespace HobbitKeyVisualizer.WinApi
 
         [DllImport(user32)]
         public static extern IntPtr SetWindowsHookEx(
-            [In] int idHook,
+            [In] WindowsHook idHook,
             [In] Delegate lpfn,
             [In] IntPtr hMod,
             [In] uint dwThreaedId = 0
@@ -22,10 +22,18 @@ namespace HobbitKeyVisualizer.WinApi
 
         [DllImport(user32)]
         public static extern long CallNextHookEx(
-            [In] [Optional] IntPtr hhk,
+            [In] [Optional] IntPtr hHk,
             [In] int nCode,
             [In] WindowsMessage wParam,
-            [In] KbDllHookStruct lParam
+            [In] KbdLlHookStruct lParam
+        );
+
+        [DllImport(user32)]
+        public static extern long CallNextHookEx(
+            [In] [Optional] IntPtr hHk,
+            [In] HookCode nCode,
+            [In] WindowsMessage wParam,
+            [In] MsLlHookStruct lParam
         );
     }
 }
