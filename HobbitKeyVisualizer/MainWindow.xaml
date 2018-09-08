@@ -40,64 +40,77 @@
         </ToggleButton>
 
         <ToggleButton
-            Height="125" 
-            Canvas.Left="1472"
-            Canvas.Top="69"
-            Width="125" 
-            Style="{DynamicResource SquareKey}"
-            DataContext="{Binding WButton}"
+            Height="78" 
+            Canvas.Left="56"
+            Canvas.Top="219.75"
+            Width="1032"
+            FontSize="50"
+            IsChecked="{Binding MouseHookIsInstalled}"
+            Focusable="False"
         >
-            W
+            Mouse Hook Installed
         </ToggleButton>
 
-        <ToggleButton
-            Height="125" 
-            Canvas.Left="1472"
-            Canvas.Top="194"
-            Width="125" 
-            Style="{DynamicResource SquareKey}"
-            DataContext="{Binding SButton}"
-            Content="S"
+        <ContentControl Name="SpaceBar"
+            Content="{Binding SpaceBar}"
+            Height="111"
+            Width="1095.5"
+            Canvas.Top="898" 
+            ContentTemplate="{StaticResource RectangularButton}" Canvas.Left="25"
         />
 
-        <ToggleButton
-            Height="125" 
-            Canvas.Left="1347"
-            Canvas.Top="194"
-            Width="125" 
-            Style="{DynamicResource SquareKey}"
-            DataContext="{Binding AButton}"
-            Content="A"
+        <ContentControl Name="AButton"
+            Content="{Binding AButton}"
+            Height="136.25"
+            Width="134.5"
+            Canvas.Left="1323.5"
+            Canvas.Top="204.75" 
+            ContentTemplate="{StaticResource RectangularButton}"
         />
 
-        <ToggleButton
-            Height="125" 
-            Canvas.Left="1472"
-            Canvas.Top="194"
-            Width="125" 
-            Style="{DynamicResource SquareKey}"
-            DataContext="{Binding SButton}"
-            Content="S"
+        <ContentControl Name="SButton"
+            Content="{Binding SButton}"
+            Height="136.25"
+            Width="134.5"
+            Canvas.Left="1458"
+            Canvas.Top="204.75" 
+            ContentTemplate="{StaticResource RectangularButton}"
         />
 
-        <ToggleButton
-            Height="125" 
-            Canvas.Left="1597"
-            Canvas.Top="194"
-            Width="125" 
-            Style="{DynamicResource SquareKey}"
-            DataContext="{Binding DButton}"
-            Content="D"
+        <ContentControl Name="DButton"
+            Content="{Binding DButton}"
+            Height="136.25"
+            Width="134.5"
+            Canvas.Left="1592.5"
+            Canvas.Top="204.75" 
+            ContentTemplate="{StaticResource RectangularButton}"
         />
 
-        <ToggleButton
-            Height="125" 
-            Canvas.Left="92"
-            Canvas.Top="892"
-            Width="996" 
-            Style="{DynamicResource SquareKey}"
-            DataContext="{Binding SpaceBar}"
-            Content="Space"
+        <ContentControl Name="WButton"
+            Content="{Binding WButton}"
+            Height="136.25"
+            Width="134.5"
+            Canvas.Left="1458"
+            Canvas.Top="68.5" 
+            ContentTemplate="{StaticResource RectangularButton}"
+        />
+
+        <ContentControl Name="Mouse1"
+            Content="{Binding M1}"
+            Height="472.5"
+            Width="126.769"
+            Canvas.Left="1356.5"
+            Canvas.Top="458.5" 
+            ContentTemplate="{StaticResource LeftMouseButtonTemplate}"
+        />
+
+        <ContentControl 
+            Content="{Binding M2}"
+            Height="472.5"
+            Width="126.769"
+            Canvas.Left="1552.231"
+            Canvas.Top="458.5" 
+            ContentTemplate="{StaticResource LeftMouseButtonTemplate}"
         />
     </Canvas>
 </Window>

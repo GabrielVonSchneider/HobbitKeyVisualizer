@@ -1,51 +1,31 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:HobbitKeyVisualizer">
-    <Style x:Key="FocusVisual">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
-    <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
-    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
-    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
-    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
-    <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
-    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
-    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-    <Style 
-        x:Key="SquareKey" 
-        TargetType="{x:Type ToggleButton}">
+    <Style
+        x:Key="ButtonText"
+        TargetType="{x:Type TextBlock}"
+    >
         <Setter Property="Foreground" Value="Cyan"/>
-        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="50"/>
-        <Setter 
-            Property="IsChecked" 
-            Value="{Binding IsDown, Mode=OneWay}"
-        />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate 
-                    TargetType="{x:Type ToggleButton}">
-                    <Border
-                        x:Name="border" 
-                        SnapsToDevicePixels="true" 
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <DataTemplate
+        x:Key="RectangularButton"
+        DataType="{x:Type local:KeyViewModel}">
+        <ToggleButton IsChecked="{Binding IsDown}">
+            <ToggleButton.Template>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="border" 
+                        Background="Transparent"
                         BorderBrush="#FFFF6E00"
-                        BorderThickness="5" Background="#00000000"
-                    >
+                        BorderThickness="7">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CheckStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="Checked" GeneratedDuration="0">
                                         <Storyboard>
+                                            <ColorAnimation Duration="0" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="border"/>
                                             <ColorAnimation Duration="0:0:0.1" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border"/>
                                         </Storyboard>
                                     </VisualTransition>
@@ -64,66 +44,56 @@
                                 <VisualState x:Name="Indeterminate"/>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter 
-                            x:Name="contentPresenter" 
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            Margin="{TemplateBinding Padding}" 
-                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Focusable="False" 
-                            RecognizesAccessKey="True" 
-                        />
+                        <TextBlock
+                            Text="{Binding Name}"
+                            Style="{StaticResource ButtonText}"/>
                     </Border>
                 </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style
-        TargetType="ToggleButton"
-        x:Key="ElipticalButtonStyle"
-        BasedOn="{StaticResource SquareKey}"
-    >
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ToggleButton">
-                    <Grid>
-                        <Ellipse x:Name="ellipse" 
-                            Fill="#00FF6E00"
-                            Stroke="#FFFF6E00"
-                            StrokeThickness="5"
+            </ToggleButton.Template>
+        </ToggleButton>
+    </DataTemplate>
+    <DataTemplate x:Key="LeftMouseButtonTemplate" DataType="local:KeyViewModel">
+        <Grid>
+            <ToggleButton IsChecked="{Binding IsDown}">
+                <ToggleButton.Template>
+                    <ControlTemplate>
+                        <Ellipse Name="EllipticalBorder"
+                            Stroke="#FFFF6E00" 
+                            Fill="Transparent"
+                            StrokeThickness="7"
                         >
                             <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup x:Name="CheckStates">
                                     <VisualStateGroup.Transitions>
-                                        <VisualTransition From="Pressed" GeneratedDuration="0">
+                                        <VisualTransition From="Checked" GeneratedDuration="0">
                                             <Storyboard>
-                                                <ColorAnimation Duration="0:0:0.1" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse"/>
+                                                <ColorAnimation Duration="0:0:0.1" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="EllipticalBorder"/>
                                             </Storyboard>
                                         </VisualTransition>
                                     </VisualStateGroup.Transitions>
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="MouseOver"/>
-                                    <VisualState x:Name="Pressed">
+                                    <VisualState x:Name="Checked">
                                         <Storyboard>
-                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse">
-                                                <EasingColorKeyFrame KeyTime="0" Value="Cyan"/>
-                                            </ColorAnimationUsingKeyFrames>
-                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse">
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="EllipticalBorder">
                                                 <EasingColorKeyFrame KeyTime="0" Value="#FFFF6E00"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="EllipticalBorder">
+                                                <EasingColorKeyFrame KeyTime="0" Value="Cyan"/>
                                             </ColorAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
-                                    <VisualState x:Name="Disabled"/>
+                                    <VisualState x:Name="Unchecked"/>
+                                    <VisualState x:Name="Indeterminate"/>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                         </Ellipse>
-                        <ContentPresenter 
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+            </ToggleButton>
+            <TextBlock
+                Text="{Binding Name}"
+                Style="{StaticResource ButtonText}"
+            />
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>
+    

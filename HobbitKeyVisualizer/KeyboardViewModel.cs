@@ -66,11 +66,15 @@ namespace HobbitKeyVisualizer
         {
             this.keyboardHook = new KeyboardHook(
                 SynchronizationContext.Current);
-            this.mouseHook = new MouseHook(
-                SynchronizationContext.Current);
-
             this.keyboardHook.KeyDown += this.KeyDown;
             this.keyboardHook.KeyUp += this.KeyUp;
+
+            this.mouseHook = new MouseHook(
+                SynchronizationContext.Current);
+            this.mouseHook.M1Down += () => this.m1Token.Push();
+            this.mouseHook.M2Down += () => this.m2Token.Push();
+            this.mouseHook.M1Up += () => this.m1Token.Release();
+            this.mouseHook.M2Up += () => this.m2Token.Release();
 
             this.keys = new Dictionary<VirtualKeyCode, KeyViewModel.Token>
             {
