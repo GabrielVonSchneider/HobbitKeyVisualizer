@@ -77,9 +77,6 @@
     <Compile Include="Hook.cs" />
     <Compile Include="KeyboardHook.cs" />
     <Compile Include="KeyboardViewModel.cs" />
-    <Compile Include="KeyView.xaml.cs">
-      <DependentUpon>KeyView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="KeyViewModel.cs" />
     <Compile Include="MouseHook.cs" />
     <Compile Include="WinApi\HookCode.cs" />
@@ -98,10 +95,6 @@
     <Compile Include="WinApi\VirtualKeyCode.cs" />
     <Compile Include="WinApi\WindowsHook.cs" />
     <Compile Include="WinApi\WindowsMessage.cs" />
-    <Page Include="KeyView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

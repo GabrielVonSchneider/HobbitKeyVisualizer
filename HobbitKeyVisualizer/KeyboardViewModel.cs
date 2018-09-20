@@ -15,6 +15,8 @@ namespace HobbitKeyVisualizer
         public KeyViewModel SButton { get; }
         public KeyViewModel WButton { get; }
         public KeyViewModel SpaceBar { get; }
+        public KeyViewModel Escape { get; }
+        public KeyViewModel Enter { get; }
 
         private readonly KeyViewModel.Token m1Token;
         private readonly KeyViewModel.Token m2Token;
@@ -83,6 +85,8 @@ namespace HobbitKeyVisualizer
                 {VirtualKeyCode.S, new KeyViewModel.Token("S")},
                 {VirtualKeyCode.D, new KeyViewModel.Token("D")},
                 {VirtualKeyCode.Space, new KeyViewModel.Token("Space")},
+                {VirtualKeyCode.Escape, new KeyViewModel.Token("Esc")},
+                {VirtualKeyCode.Return, new KeyViewModel.Token("Enter")}
             };
 
             this.WButton = this.keys[VirtualKeyCode.W].Vm;
@@ -90,6 +94,8 @@ namespace HobbitKeyVisualizer
             this.SButton = this.keys[VirtualKeyCode.S].Vm;
             this.DButton = this.keys[VirtualKeyCode.D].Vm;
             this.SpaceBar = this.keys[VirtualKeyCode.Space].Vm;
+            this.Escape = this.keys[VirtualKeyCode.Escape].Vm;
+            this.Enter = this.keys[VirtualKeyCode.Return].Vm;
 
             this.m1Token = new KeyViewModel.Token("M1");
             this.m2Token = new KeyViewModel.Token("M2");

@@ -61,56 +61,75 @@
 
         <ContentControl Name="AButton"
             Content="{Binding AButton}"
-            Height="136.25"
-            Width="134.5"
-            Canvas.Left="1323.5"
-            Canvas.Top="204.75" 
+            Height="114"
+            Width="113"
+            Canvas.Left="1195"
+            Canvas.Top="375" 
             ContentTemplate="{StaticResource RectangularButton}"
         />
 
         <ContentControl Name="SButton"
             Content="{Binding SButton}"
-            Height="136.25"
-            Width="134.5"
-            Canvas.Left="1458"
-            Canvas.Top="204.75" 
+            Height="114"
+            Width="113"
+            Canvas.Left="1307"
+            Canvas.Top="375" 
             ContentTemplate="{StaticResource RectangularButton}"
         />
 
         <ContentControl Name="DButton"
             Content="{Binding DButton}"
-            Height="136.25"
-            Width="134.5"
-            Canvas.Left="1592.5"
-            Canvas.Top="204.75" 
+            Height="114"
+            Width="113"
+            Canvas.Left="1419"
+            Canvas.Top="375" 
             ContentTemplate="{StaticResource RectangularButton}"
         />
 
         <ContentControl Name="WButton"
             Content="{Binding WButton}"
-            Height="136.25"
-            Width="134.5"
-            Canvas.Left="1458"
-            Canvas.Top="68.5" 
+            Height="114"
+            Width="113"
+            Canvas.Left="1307"
+            Canvas.Top="260" 
             ContentTemplate="{StaticResource RectangularButton}"
         />
 
         <ContentControl Name="Mouse1"
             Content="{Binding M1}"
-            Height="472.5"
-            Width="126.769"
-            Canvas.Left="1356.5"
-            Canvas.Top="458.5" 
+            Height="320"
+            Width="127"
+            Canvas.Left="1466"
+            Canvas.Top="618" 
             ContentTemplate="{StaticResource LeftMouseButtonTemplate}"
         />
 
         <ContentControl 
             Content="{Binding M2}"
-            Height="472.5"
-            Width="126.769"
-            Canvas.Left="1552.231"
-            Canvas.Top="458.5" 
+            Height="320"
+            Width="128"
+            Canvas.Left="1653"
+            Canvas.Top="618" 
             ContentTemplate="{StaticResource LeftMouseButtonTemplate}"
+        />
+
+        <ContentControl x:Name="EscButton"
+            Content="{Binding Escape}"
+            Height="114"
+            Width="113"
+            Canvas.Left="1227"
+            Canvas.Top="60" 
+            ContentTemplate="{StaticResource RectangularButton}"
+        />
+
+        <ContentControl 
+            x:Name="Enter"
+            Content="{Binding Enter}"
+            Height="229"
+            Width="236"
+            Canvas.Left="1605"
+            Canvas.Top="260" 
+            ContentTemplate="{StaticResource RectangularButton}"
         />
     </Canvas>
 </Window>
