@@ -32,11 +32,22 @@
             Canvas.Left="56"
             Canvas.Top="38"
             Width="1032"
-            FontSize="50"
+            FontSize="40"
             IsChecked="{Binding KeyboardHookIsInstalled}"
             Focusable="False"
+            Background="Black"
         >
-            Keyboard Hook Installed
+            <TextBlock>
+                Keyboard Hook Installed
+                <TextBlock.Style>
+                    <Style 
+                        TargetType="TextBlock"
+                        BasedOn="{StaticResource ButtonText}"
+                    >
+                        <Setter Property="Foreground" Value="Orange"/>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
         </ToggleButton>
 
         <ToggleButton
@@ -44,92 +55,113 @@
             Canvas.Left="56"
             Canvas.Top="219.75"
             Width="1032"
-            FontSize="50"
+            FontSize="40"
             IsChecked="{Binding MouseHookIsInstalled}"
             Focusable="False"
+            Background="Black"
         >
-            Mouse Hook Installed
+            <TextBlock>
+                Mouse Hook Installed
+                <TextBlock.Style>
+                    <Style 
+                        TargetType="TextBlock"
+                        BasedOn="{StaticResource ButtonText}"
+                    >
+                        <Setter Property="Foreground" Value="Orange"/>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
         </ToggleButton>
 
         <ContentControl Name="SpaceBar"
             Content="{Binding SpaceBar}"
-            Height="111"
-            Width="1095.5"
-            Canvas.Top="898" 
-            ContentTemplate="{StaticResource RectangularButton}" Canvas.Left="25"
+            Height="88"
+            Width="998"
+            Canvas.Top="902" 
+            ContentTemplate="{StaticResource RectangularButton}" Canvas.Left="72" Focusable="False"
         />
 
         <ContentControl Name="AButton"
             Content="{Binding AButton}"
-            Height="114"
-            Width="113"
-            Canvas.Left="1195"
-            Canvas.Top="375" 
-            ContentTemplate="{StaticResource RectangularButton}"
+            Height="100"
+            Width="100"
+            Canvas.Left="1220"
+            Canvas.Top="460" 
+            ContentTemplate="{StaticResource RectangularButton}" Focusable="False"
         />
 
         <ContentControl Name="SButton"
             Content="{Binding SButton}"
-            Height="114"
-            Width="113"
-            Canvas.Left="1307"
-            Canvas.Top="375" 
-            ContentTemplate="{StaticResource RectangularButton}"
+            Height="100"
+            Width="100"
+            Canvas.Left="1329"
+            Canvas.Top="460" 
+            ContentTemplate="{StaticResource RectangularButton}" Focusable="False"
         />
 
         <ContentControl Name="DButton"
             Content="{Binding DButton}"
-            Height="114"
-            Width="113"
-            Canvas.Left="1419"
-            Canvas.Top="375" 
-            ContentTemplate="{StaticResource RectangularButton}"
+            Height="100"
+            Width="100"
+            Canvas.Left="1438"
+            Canvas.Top="460" 
+            ContentTemplate="{StaticResource RectangularButton}" Focusable="False"
         />
 
         <ContentControl Name="WButton"
             Content="{Binding WButton}"
-            Height="114"
-            Width="113"
-            Canvas.Left="1307"
-            Canvas.Top="260" 
-            ContentTemplate="{StaticResource RectangularButton}"
+            Height="100"
+            Width="100"
+            Canvas.Left="1329"
+            Canvas.Top="351" 
+            ContentTemplate="{StaticResource RectangularButton}" Focusable="False"
         />
 
         <ContentControl Name="Mouse1"
             Content="{Binding M1}"
-            Height="320"
-            Width="127"
-            Canvas.Left="1466"
-            Canvas.Top="618" 
-            ContentTemplate="{StaticResource LeftMouseButtonTemplate}"
+            Height="263"
+            Width="106"
+            Canvas.Left="1517"
+            Canvas.Top="672" 
+            ContentTemplate="{StaticResource LeftMouseButtonTemplate}" Focusable="False"
         />
 
         <ContentControl 
             Content="{Binding M2}"
-            Height="320"
-            Width="128"
-            Canvas.Left="1653"
-            Canvas.Top="618" 
-            ContentTemplate="{StaticResource LeftMouseButtonTemplate}"
+            Height="263"
+            Width="107"
+            Canvas.Left="1673"
+            Canvas.Top="672" 
+            ContentTemplate="{StaticResource LeftMouseButtonTemplate}" Focusable="False"
         />
 
         <ContentControl x:Name="EscButton"
             Content="{Binding Escape}"
-            Height="114"
-            Width="113"
-            Canvas.Left="1227"
-            Canvas.Top="60" 
+            Height="100"
+            Width="100"
+            Canvas.Left="1268"
+            Canvas.Top="92" 
             ContentTemplate="{StaticResource RectangularButton}"
+            Focusable="False"
+            FontSize="40"
         />
 
-        <ContentControl 
-            x:Name="Enter"
+        <ContentControl x:Name="Enter"
             Content="{Binding Enter}"
-            Height="229"
-            Width="236"
-            Canvas.Left="1605"
-            Canvas.Top="260" 
+            Height="174"
+            Width="196"
+            Canvas.Left="1625"
+            Canvas.Top="278" 
             ContentTemplate="{StaticResource RectangularButton}"
+            Focusable="False"
         />
+        <Label
+            Content="Game goes here."
+            Canvas.Left="251"
+            Canvas.Top="469"
+            Foreground="White"
+            FontSize="80"
+        >
+        </Label>
     </Canvas>
 </Window>
