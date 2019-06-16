@@ -12,7 +12,7 @@
     Background="Black"
 >
     <Window.DataContext>
-        <local:KeyboardViewModel/>
+        <local:KeyboardViewModel x:Name="vm"/>
     </Window.DataContext>
 
     <Canvas>

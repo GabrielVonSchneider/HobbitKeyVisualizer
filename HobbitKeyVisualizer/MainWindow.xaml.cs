@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace HobbitKeyVisualizer
 {
@@ -9,7 +10,13 @@ namespace HobbitKeyVisualizer
     {
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            this.vm.Dispose();
         }
     }
 }

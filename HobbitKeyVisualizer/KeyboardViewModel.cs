@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using HobbitKeyVisualizer.Common;
+﻿using HobbitKeyVisualizer.Common;
 using HobbitKeyVisualizer.WinApi;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace HobbitKeyVisualizer
 {
-    internal class KeyboardViewModel : PropertyChangedBase
+    internal class KeyboardViewModel : PropertyChangedBase, IDisposable
     {
         private readonly KeyboardHook keyboardHook;
         private readonly Dictionary<VirtualKeyCode, KeyViewModel.Token> keys;
@@ -119,5 +120,27 @@ namespace HobbitKeyVisualizer
 
         public KeyViewModel M1 => this.m1Token.Vm;
         public KeyViewModel M2 => this.m2Token.Vm;
+
+        private IEnumerable<Hook> Hooks => new Hook[]
+        {
+            this.keyboardHook,
+            this.mouseHook
+        };
+
+        public void Clear()
+        {
+            foreach (var hook in this.Hooks)
+            {
+                if (hook.IsInstalled)
+                {
+                    hook.Unhook();
+                }
+            }
+        }
+
+        public void Dispose()
+        {
+            this.Clear();
+        }
     }
 }
