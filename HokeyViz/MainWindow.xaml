@@ -10,6 +10,11 @@
     Width="1920" 
     Height="1080"
     Background="Black"
+    WindowStyle="None"
+    ResizeMode="NoResize"
+    WindowStartupLocation="Manual"
+    Top="0"
+    Left="0"
 >
     <Window.DataContext>
         <local:KeyboardViewModel x:Name="vm"/>
@@ -77,8 +82,8 @@
             Content="{Binding SpaceBar}"
             Height="88"
             Width="998"
-            Canvas.Top="902" 
-            ContentTemplate="{StaticResource RectangularButton}" Canvas.Left="72" Focusable="False"
+            Canvas.Top="934" 
+            ContentTemplate="{StaticResource RectangularButton}" Canvas.Left="90" Focusable="False"
         />
 
         <ContentControl Name="AButton"
