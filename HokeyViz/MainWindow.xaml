@@ -81,9 +81,9 @@
         <ContentControl Name="SpaceBar"
             Content="{Binding SpaceBar}"
             Height="88"
-            Width="998"
+            Width="786"
             Canvas.Top="934" 
-            ContentTemplate="{StaticResource RectangularButton}" Canvas.Left="90" Focusable="False"
+            ContentTemplate="{StaticResource RectangularButton}" Canvas.Left="311" Focusable="False"
         />
 
         <ContentControl Name="AButton"
@@ -168,5 +168,12 @@
             FontSize="80"
         >
         </Label>
+        <ContentControl x:Name="SpaceBar_Copy"
+            Content="{Binding Control}"
+            Height="88"
+            Width="180"
+            Canvas.Top="934" 
+            ContentTemplate="{StaticResource RectangularButton}" Canvas.Left="65" Focusable="False"
+        />
     </Canvas>
 </Window>

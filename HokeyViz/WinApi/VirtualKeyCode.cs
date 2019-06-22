@@ -38,6 +38,7 @@
         W = 0x57,
         I = 0x49,
 
+        LControl = 0xA2,
         Space = 0x20
     }
 }

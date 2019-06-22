@@ -15,6 +15,7 @@ namespace HokeyViz
         public KeyViewModel DButton { get; }
         public KeyViewModel SButton { get; }
         public KeyViewModel WButton { get; }
+        public KeyViewModel Control { get; }
         public KeyViewModel SpaceBar { get; }
         public KeyViewModel Escape { get; }
         public KeyViewModel Enter { get; }
@@ -85,6 +86,7 @@ namespace HokeyViz
                 {VirtualKeyCode.A, new KeyViewModel.Token("A")},
                 {VirtualKeyCode.S, new KeyViewModel.Token("S")},
                 {VirtualKeyCode.D, new KeyViewModel.Token("D")},
+                {VirtualKeyCode.LControl, new KeyViewModel.Token("Ctrl")},
                 {VirtualKeyCode.Space, new KeyViewModel.Token("Space")},
                 {VirtualKeyCode.Escape, new KeyViewModel.Token("Esc")},
                 {VirtualKeyCode.Return, new KeyViewModel.Token("Enter")}
@@ -94,6 +96,7 @@ namespace HokeyViz
             this.AButton = this.keys[VirtualKeyCode.A].Vm;
             this.SButton = this.keys[VirtualKeyCode.S].Vm;
             this.DButton = this.keys[VirtualKeyCode.D].Vm;
+            this.Control = this.keys[VirtualKeyCode.LControl].Vm;
             this.SpaceBar = this.keys[VirtualKeyCode.Space].Vm;
             this.Escape = this.keys[VirtualKeyCode.Escape].Vm;
             this.Enter = this.keys[VirtualKeyCode.Return].Vm;
