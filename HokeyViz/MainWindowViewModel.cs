@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace HokeyViz
 {
-    internal class KeyboardViewModel : PropertyChangedBase, IDisposable
+    internal class MainWindowViewModel : PropertyChangedBase, IDisposable
     {
         private readonly KeyboardHook keyboardHook;
         private readonly Dictionary<VirtualKeyCode, KeyViewModel.Token> keys;
@@ -65,7 +65,7 @@ namespace HokeyViz
             }
         }
 
-        public KeyboardViewModel()
+        public MainWindowViewModel()
         {
             this.keyboardHook = new KeyboardHook(
                 SynchronizationContext.Current);

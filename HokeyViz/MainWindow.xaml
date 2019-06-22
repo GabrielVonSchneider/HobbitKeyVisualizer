@@ -17,7 +17,7 @@
     Left="0"
 >
     <Window.DataContext>
-        <local:KeyboardViewModel x:Name="vm"/>
+        <local:MainWindowViewModel x:Name="vm"/>
     </Window.DataContext>
 
     <Canvas>

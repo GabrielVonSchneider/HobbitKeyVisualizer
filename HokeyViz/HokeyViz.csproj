@@ -79,7 +79,7 @@
     <Compile Include="Common\TokenBasedDelegateCommand.cs" />
     <Compile Include="Hook.cs" />
     <Compile Include="KeyboardHook.cs" />
-    <Compile Include="KeyboardViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="KeyViewModel.cs" />
     <Compile Include="MouseHook.cs" />
     <Compile Include="WinApi\HookCode.cs" />
